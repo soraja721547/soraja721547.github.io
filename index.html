@@ -46,18 +46,20 @@
             background-size: 100%;
         }
         input{
-            
             background-image: url(/inpBg.png);
             background-position:right 5% bottom 280%;
             background-size: 15%;
             background-repeat: no-repeat;
+            transition: .5s!important;
             opacity: .6;
         }
         input:focus{
             transition: .5s;
-            background-position:right 5% bottom 140%;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0)!important;
             outline: unset!important;
+        }
+        .inputActive:focus{
+            background-position:right 5% bottom 140%;
         }
 
         .test {
@@ -173,6 +175,25 @@
             background-color: rgba(241, 145, 0, 0.436);
         }
 
+        .input-group{
+            position: relative;
+        }
+        .kion{
+            width: 61px;
+            height: 50px;
+            position: absolute;
+            right: 18px;
+            top: 9px;
+            z-index: 1055;
+            /* animation: dodong .1s infinite; */
+        }
+        @keyframes dodong {
+            0%   {right: 18px;}
+            25%   {right: 10px;}
+            50%  {right: 18px;}
+            75%  {right: 26px;}
+            100% {right: 18px;}
+        }
     </style>
 </head>
 
@@ -208,7 +229,9 @@
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="basic-addon1">餐廳</span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter新增" aria-label="Username" aria-describedby="basic-addon1" v-model="newLunch" @keyup.enter="addNewLunch">
+                                <input type="text" class="form-control" placeholder="Enter新增" aria-label="Username" aria-describedby="basic-addon1" v-model="newLunch" @keyup.enter="addNewLunch"
+                                :class="{inputActive: inputIsActive}">
+                                <img :class="{kion: isKion}" src="/kion.png" alt="" v-if="newLunch">
                             </div>
                             <hr>
                             <div class="lunchList">
@@ -241,6 +264,8 @@
         var app = new Vue({
             el: '.test',
             data: {
+                inputIsActive: true,
+                isKion: true,
                 newLunch:'',
                 lunchList: [
                     {text: '韓上屋'},
@@ -301,6 +326,24 @@
                 while (i < this.lunchList.length) {
                     $('.rota').eq(i).css('transform', 'rotate(' + (360 / this.lunchList.length * i) + 'deg)')
                     i++;
+                }
+                if(this.newLunch && this.newLunch.length < 10){
+                    $('.kion').css('animation','dodong .1s')
+                    .css('width','61px')
+                    .css('height','50px');
+                    setTimeout(function () {
+                        $('.kion').css('animation','none')
+                    }, 100);
+                }else if(this.newLunch.length > 9 && this.newLunch.length < 99){
+                    $('.kion').css('animation','dodong .1s infinite')
+                    // .css('top','-'+ this.newLunch.length*2 +'px')
+                    .css('width',this.newLunch.length*4 + 61+'px')
+                    .css('height',this.newLunch.length*4 + 50+'px');
+                }
+                if(this.newLunch){
+                    this.inputIsActive = false
+                }else{
+                    this.inputIsActive = true
                 }
             },
         })
