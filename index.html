@@ -20,7 +20,6 @@
         }
         ::-webkit-scrollbar {
             background-color: rgba(63, 169, 245, 0);
-            /* border-radius: 1000px; */
             width: 7px;
         }
 
@@ -31,7 +30,6 @@
 
         ::-webkit-scrollbar-track {
             background-color: #ffffff00;
-            /* border-radius: 1000px; */
             -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0) inset;
             box-shadow: 0px 0px 3px rgba(0, 0, 0, 0) inset;
         }
@@ -47,20 +45,17 @@
             background-repeat: no-repeat;
             background-size: 100%;
         }
-
-        .runHorse{
-            width: 100vw;
-            height: 30px;
-            overflow: hidden;
-            position: absolute;
-            top: 25px;
-            background-color: rgba(0, 0, 0, 0.582);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        input{
+            
+            background-image: url(/inpBg.png);
+            background-position:right 5% bottom 280%;
+            background-size: 15%;
+            background-repeat: no-repeat;
             opacity: .6;
-            transition: 10s;
-            white-space: nowrap;
+        }
+        input:focus{
+            transition: .5s;
+            background-position:right 5% bottom 140%;
         }
 
         .test {
@@ -169,15 +164,17 @@
             overflow-y: scroll;
             height: 270px;
         }
+        .lunchName{
+            height: 32px;
+        }
         .lunchName:nth-child(odd){
             background-color: rgba(241, 145, 0, 0.436);
         }
+
     </style>
 </head>
 
 <body>
-    <!-- <div class="runHorse text-light">
-    </div> -->
     <div class="test">
         <div class="isThis"></div>
         <div class="box">
@@ -213,9 +210,9 @@
                             </div>
                             <hr>
                             <div class="lunchList">
-                                <div class="lunchName text-center pt-1 pb-1" v-for="(list,index) in lunchList" @click="deleteLunch(index)">
+                                <div class="lunchName text-center pt-1 pb-1" v-for="(list,index) in lunchList">
                                     {{list.text}}
-                                    <button type="button" class="close text-danger">
+                                    <button type="button" class="close text-danger" @click="deleteLunch(index)">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -243,33 +240,16 @@
             el: '.test',
             data: {
                 newLunch:'',
-                lunchList: [{
-                        text: '韓上屋'
-                    },
-                    {
-                        text: '八方雲集'
-                    },
-                    {
-                        text: '好食日x初本'
-                    },
-                    {
-                        text: '益 清水米糕'
-                    },
-                    {
-                        text: '老夫子牛肉麵'
-                    },
-                    {
-                        text: '段純貞'
-                    },
-                    {
-                        text: '傻師傅湯包'
-                    },
-                    {
-                        text: '九湯屋日本拉麵'
-                    },
-                    {
-                        text: '甘泉魚麵'
-                    },
+                lunchList: [
+                    {text: '韓上屋'},
+                    {text: '八方雲集'},
+                    {text: '好食日x初本'},
+                    {text: '益 清水米糕'},
+                    {text: '老夫子牛肉麵'},
+                    {text: '段純貞'},
+                    {text: '傻師傅湯包'},
+                    {text: '九湯屋日本拉麵'},
+                    {text: '甘泉魚麵'},
                 ]
             },
             mounted: function () {
@@ -297,10 +277,15 @@
                     }, 50);
                 },
                 addNewLunch: function(){
-                    this.lunchList.push({
-                        text: this.newLunch
-                    })
-                    this.newLunch = ''
+                    if(this.newLunch){
+                        this.lunchList.push({
+                            text: this.newLunch
+                        })
+                        this.newLunch = ''
+                    }else{
+                        alert('輸入餐廳名稱啊冰鳥')
+                    }
+                    
                 },
                 removeAllLunch: function(){
                     this.lunchList = []
