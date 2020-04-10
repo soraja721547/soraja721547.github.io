@@ -264,6 +264,7 @@
         var app = new Vue({
             el: '.test',
             data: {
+                runumber:'',
                 inputIsActive: true,
                 isKion: true,
                 newLunch:'',
@@ -292,15 +293,14 @@
                         return Math.floor(Math.random() * x) + 1;
                     };
                     let lunchNumber = this.lunchList.length;
-                    let newNumber = (360 / lunchNumber) * getRandom(29) + 720;
-
-                    $('.box').css('transition', '0s');
-                    $('.box').css('transform', 'rotate(' + 0 + 'deg)');
+                    oldnumber = (360 / lunchNumber) * getRandom(29) + 720;
+                    this.runumber = Number(this.runumber) + oldnumber;
+                    
                     $(window).scrollTop(0);
 
                     setTimeout(function () {
                         $('.box').css('transition', '5s');
-                        $('.box').css('transform', 'rotate(' + newNumber + 'deg)');
+                        $('.box').css('transform', 'rotate(' + app.runumber + 'deg)');
                     }, 50);
                 },
                 addNewLunch: function(){
@@ -336,7 +336,6 @@
                     }, 100);
                 }else if(this.newLunch.length > 9 && this.newLunch.length < 99){
                     $('.kion').css('animation','dodong .1s infinite')
-                    // .css('top','-'+ this.newLunch.length*2 +'px')
                     .css('width',this.newLunch.length*4 + 61+'px')
                     .css('height',this.newLunch.length*4 + 50+'px');
                 }
