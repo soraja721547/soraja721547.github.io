@@ -298,10 +298,8 @@
                     
                     $(window).scrollTop(0);
 
-                    setTimeout(function () {
-                        $('.box').css('transition', '5s');
-                        $('.box').css('transform', 'rotate(' + app.runumber + 'deg)');
-                    }, 50);
+                    $('.box').css('transition', '5s');
+                    $('.box').css('transform', 'rotate(' + app.runumber + 'deg)');
                 },
                 addNewLunch: function(){
                     if(this.newLunch){
@@ -322,6 +320,9 @@
                 },
             },
             updated: function () {
+                this.runumber = 0;
+                $('.box').css('transition', '0s');
+                $('.box').css('transform', 'rotate(0deg)');
                 let i = 0;
                 while (i < this.lunchList.length) {
                     $('.rota').eq(i).css('transform', 'rotate(' + (360 / this.lunchList.length * i) + 'deg)')
