@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh_tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/animate.css">
+    <title>舞茶萱</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Microsoft JhengHei;
+        }
+
+        #body_id {
+            height: 100vh;
+            width: 100%;
+        }
+
+        body {
+            margin: 0;
+            /* height: 10000px; */
+            /* padding-top: 30px; */
+        }
+
+        .mousepic {
+
+            width: 7vw;
+        }
+
+        #ad {
+            position: absolute;
+            z-index: 9;
+            transition-delay: 0.0166s;
+            transform: translate(10%, 10%);
+        }
+
+        .fixed-menu {
+            display: none;
+            border-top: 0px solid white;
+            background-color: navajowhite;
+            padding: 15px 0;
+            /* margin-top: 0px; */
+        }
+
+        .fixed-menu.active {
+            display: block;
+        }
+
+        .fixed-menu a {
+            text-decoration: none;
+            color: orangered;
+            font-size: 24px;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0 40px;
+        }
+
+        .fixed {
+            position: fixed;
+            right: 0;
+            top: 0;
+        }
+
+        .bg-img {
+            width: 100%;
+            height: calc(100vh - 110px);
+            background-image: url('img/logobg.jpg');
+            background-size: cover;
+            background-position: left;
+        }
+
+        .background-banner {
+            width: 100%;
+            height: 100vh;
+            /* background-image: url('img/04.jpg'); */
+            /* position: relative; */
+            /* background-color: antiquewhite; */
+            /* display: flex;
+            justify-content: center;
+            align-items:center; */
+            /* padding: 500px 0 0 0; */
+
+        }
+
+
+
+        .bg_parallax1 {
+            /* background-color: aqua; */
+            /* width: 100vw; */
+            /* padding-top: 110px;  */
+            position: relative;
+            height: 100vh;
+            background-image: url(img/coffee.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .bg_parallax1.active {
+            /* position: relative;
+            padding-top: 110px; */
+            /* height: calc(100vh - 110px); */
+            margin-top: 110px;
+        }
+
+        .box {
+            position: relative;
+            z-index: 5;
+        }
+
+        .box2 {
+            position: relative;
+            z-index: 5;
+        }
+
+        .box3 {
+            position: relative;
+            z-index: 5;
+        }
+
+        /* .bg_parallax1.active {
+            height: 100vh;
+            background-image: url(img/coffee-right.png);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        } */
+
+        .bg_parallax2 {
+            position: relative;
+            /* background-color: aqua; */
+            /* width: 50vw; */
+            height: 100vh;
+            /* height: calc(100vh - 100px); */
+            /* padding-top: 110px; */
+            background-image: url(img/hot.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .bp2-img {
+            height: 100%;
+            position: absolute;
+            left: 0;
+        }
+
+        .bg_parallax3 {
+            /* background-color: aqua; */
+            /* width: 50vw; */
+            position: relative;
+            height: 100vh;
+            background-image: url(img/drink.png);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+
+
+        .bg_parallax_box {
+            display: flex;
+            justify-content: space-around;
+            /* background-color: #6EB821; */
+        }
+
+        .bg_parallax_content {
+            font-size: 24px;
+            /* background-color: rgb(113, 113, 255); */
+            /* width: 100px; */
+            height: 24px;
+            margin-left: 20%;
+            margin-top: 10%;
+        }
+
+        .bg_parallax_center {
+            /* background-color: orange; */
+            width: 10vw;
+            /* height: 10%; */
+        }
+
+        .bg_parallax_right {
+            /* background-color: blueviolet; */
+            width: 10vw;
+            /* margin-right: 15%; */
+            /* height: 10%; */
+        }
+
+        .bg_parallax_content1 {
+            font-size: 24px;
+            /* background-color: blueviolet; */
+            margin-left: 20.8%;
+        }
+
+
+
+        .navbar {
+            /* position: fixed; */
+            padding: 15px 0;
+            top: 0;
+            width: 100%;
+            /* min-width: 360px; */
+            background-color: rgb(252, 252, 252);
+            overflow: hidden;
+            z-index: 7;
+            /* position: relative; */
+        }
+
+
+        .navbar a {
+
+            font-size: 18px;
+            text-decoration: none;
+            margin: 0 1vw;
+            color: #91C01B;
+        }
+
+        .nav-pic {
+            width: 150px;
+            height: 110px;
+            /* display: flex; */
+            left: 30%;
+            position: absolute;
+            top: 270px;
+            transition-duration: 0.8s;
+            background-image: url("img/it.png");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            /* max-width: 80vw; */
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            /*最大寬度限定*/
+            margin: 0 auto;
+            padding: 0 15px;
+            /* position: relative; */
+        }
+
+        .mini-logo {
+            /* position: fixed;
+            left: 50%;
+            top: 0; */
+            /* position: fixed; */
+            z-index: 8;
+            left: 15%;
+            top: 0;
+            /* transform: translate(-80%, 0%); */
+            transition: 2s;
+        }
+
+        .mini-logo img {
+            width: 150px;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .big-logo {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(0%, -87%);
+            height: 50vh;
+            transition: 1s;
+            z-index: 8;
+        }
+
+        .logo-m {
+            z-index: 7;
+            display: none;
+        }
+
+        .nav-a {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            /* background-color: aliceblue; */
+        }
+
+        @media screen and (max-width: 600px) {
+            .nav-a {
+                display: none;
+            }
+
+            .logo-m {
+
+                display: block;
+                display: flex;
+                justify-content: flex-end;
+                padding: 0 30px;
+            }
+
+        }
+
+
+
+        .mobile-navbar {
+
+            display: none;
+            border-top: 2px solid yellowgreen;
+            border-bottom: 2px solid yellowgreen;
+            background-color: rgb(255, 255, 255);
+            padding: 15px 1vw;
+            margin-bottom: 0px;
+
+        }
+
+        .mobile-navbar.active {
+            display: block;
+        }
+
+        .mobile-navbar a {
+
+            text-decoration: none;
+            color: #6EB821;
+            font-size: 24px;
+            display: flex;
+            justify-content: flex-end;
+            margin: 0 40px;
+        }
+
+        .logo-m-size {
+            display: flex;
+            align-self: center;
+            height: 6vh;
+            /* width: 25vw; */
+        }
+
+        .logo-transition {
+
+            position: fixed;
+            left: 10%;
+            top: 70px;
+            transform: translate(590%, -150%);
+            /* left: 15%;
+            top: 0;
+            transform: translate(0, 0); */
+            opacity: 0;
+            height: 1px;
+            /* width: 1px; */
+            transition: 1s;
+        }
+
+        .logo-animate {
+            transition-delay: 0.7s;
+            transform: rotate3d(0, 1, 0, 360deg);
+            /* opacity: 0; */
+        }
+
+        .up {
+            top: 25px;
+        }
+
+        .nav-a-1:hover {
+            background-color: #6EB821;
+            color: white;
+            border-radius: 50px;
+            padding: 9px;
+        }
+
+        .nav-a-2:hover {
+            background-color: #6EB821;
+            color: white;
+            border-radius: 50px;
+            padding: 9px;
+        }
+
+        .nav-a-3:hover {
+            background-color: #6EB821;
+            color: white;
+            border-radius: 50px;
+            padding: 9px;
+        }
+
+        .nav-a-4:hover {
+            background-color: #6EB821;
+            color: white;
+            border-radius: 50px;
+            padding: 9px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <div id="ad" style="position: fixed;" ; onclick="close()">
+        <img class="mousepic" src="img/mousepic.png" alt="">
+    </div> -->
+    <div id="body_id">
+
+        <div class="bg-img"></div>
+
+        <nav class="navbar animated fadeInLeftBig">
+
+            <div class="container">
+
+                <div id="mini-logo" class="mini-logo">
+                    <a href="https://soraja721547.github.io/project.html">
+                        <img src="./img/logo1.png" alt="">
+                    </a>
+                </div>
+                <div class="nav-a">
+                    <a class="nav-a-1 animated rubberBand delay-1s " href=""><b>嚴選咖啡</b></a>
+                    <a class="nav-a-2 animated rubberBand delay-2s " href=""><b>冬日推薦</b></a>
+                    <a class="nav-a-3 animated rubberBand delay-3s " href=""><b>夏日涼伴</b></a>
+                    <a class="nav-a-4 animated rubberBand delay-4s " href=""><b>關於我們</b></a>
+                </div>
+                <div class="nav-pic"></div>
+                <div id="logo-m" class="logo-m">
+                    <img class="logo-m-size" src="./img/logo-m.png" alt="">
+                </div>
+            </div>
+
+            <!-- 只會在手機板出現
+                        <div id="mobile-nav-toggle" class="mobile-nav-toggle">
+                            <i class="fas fa-bars"></i>
+                        </div> -->
+            <ul id="mobile-navbar" class="mobile-navbar animated fadeInDown">
+                <li><a href="#"><b>| 嚴選咖啡 |</b></a> </li>
+                <li><a href="#"><b>| 冬日推薦 |</b></a> </li>
+                <li><a href="#"><b>| 夏日涼伴 |</b></a> </li>
+                <li><a href="#"><b>| 關於我們 |</b></a> </li>
+            </ul>
+
+        </nav>
+
+        <div class="background-banner">
+
+
+
+            <div id="bp1" class="bg_parallax1">
+
+                <div style="background-color:rgb(253, 255, 255);border-radius:99;width:100vw;height:200px;" class="box"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box"></div>
+                <img class="menu1" style="position:absolute;left:25%;top:12.5%;width:50%" src="./img/coffee-menu.png"
+                    alt="">
+            </div>
+            <div id="bp2" class="bg_parallax2">
+                <div style="background-color:rgb(253, 255, 255);border-radius:99;width:100vw;height:200px;" class="box2"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box2"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box2"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box2"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box2"></div>
+                <img class="menu2" style="position:absolute;left:25%;top:12.5%;width:50%" src="./img/hot-menu.png" alt="">
+            </div>
+            <div id="bp3" class="bg_parallax3">
+                <div style="background-color:rgb(253, 255, 255);border-radius:99;width:100vw;height:200px;" class="box3"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box3"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box3"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box3"></div>
+                <div style="background-color:rgb(255, 255, 255);border-radius:99;width:100vw;height:200px;" class="box3"></div>
+                <img class="menu3" style="position:absolute;left:25%;top:12.5%;width:50%" src="./img/drink-menu.png"
+                    alt="">
+            </div>
+
+            <img id="big-logo" class="big-logo" src="./img/logo2.png" alt="">
+
+            <!-- <div class="about" style="width:100%;height:500px;position: relative">
+                <div class="svg" style="display:flex;bottom: 20px;right: 50%">
+                    <div class="dance" style="font-size:72px;"><b>D</b></div>
+                    <div class="dance" style="font-size:72px;">a</div>
+                    <div class="dance" style="font-size:72px;">n</div>
+                    <div class="dance" style="font-size:72px;">c</div>
+                    <div class="dance" style="font-size:72px;">e</div>
+                    <div class="dance" style="font-size:72px;">-</div>
+                    <div class="dance" style="font-size:72px;"><b>T</b></div>
+                    <div class="dance" style="font-size:72px;">e</div>
+                    <div class="dance" style="font-size:72px;">a</div>
+                </div>
+                <div class="history"></div>
+                <div class="about-bottom" style="width:100%;">
+                    <a style="width:50px;position:absolute;bottom: 20px;right: 1px"href="https://zh-tw.facebook.com/pages/category/Food---Beverage-Company/%E8%88%9E%E8%8C%B6%E8%90%B1-465358666849644/">
+                        <img class="icon" style="width:50px;position:absolute;bottom: 20px;right: 1px" src="./img/fbicon.png"
+                            alt="">
+                    </a>
+                    <div style="position:absolute;display:flex;bottom: 40px;right: 50px;">
+                        <div class="tea" style="font-size:24px;"><b>舞</b></div>
+                        <div class="tea" style="font-size:24px;"><b>茶</b></div>
+                        <div class="tea" style="font-size:24px;"><b>萱</b></div>
+                    </div>
+                </div>
+
+            </div> -->
+            <!-- <div class="footer">
+
+            </div> -->
+        </div>
+
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+
+    <script>
+        
+        window.onload = function () {
+            document.body.onmousemove = function () {
+                var adNode = document.getElementById("ad");
+                adNode.style.left = event.x + "px";
+                adNode.style.top = event.y + "px";
+            }
+        }
+        var body = document.querySelector('body');
+        var logoM = document.querySelector("#logo-m");
+        var bp1 = document.querySelector('.bg_parallax1')
+        logoM.onclick = function () {
+            // console.log(logoM);
+            // 當按鈕按下去時,將選單切換(toggle) Class 'active'
+            document.querySelector(".mobile-navbar").classList.toggle('active');
+        }
+        bp1.onclick = function () {
+            // document.querySelector('.bg_parallax1').classList.toggle('active')
+        }
+
+        var bigLogo = document.querySelector('#big-logo');
+        var miniLogo = document.querySelector('#mini-logo');
+        var scrollTop;
+
+
+
+        //Jquery版本
+        var window_height = $(window).height();   // returns width of browser viewport
+        var navFixHeight = window_height - 110;
+
+
+
+        window.onscroll = function () {
+console.log(scrollTop)
+            scrollTop = document.documentElement.scrollTop;
+            // console.log(scrollTop);
+            if (document.body.scrollTop > navFixHeight || document.documentElement.scrollTop > navFixHeight) {
+                // console.log('87');
+                bigLogo.classList.add('logo-transition');
+            } else {
+                if (document.documentElement.scrollTop == 0) {
+                    bigLogo.classList.remove('logo-transition');
+                    // console.log(989898);
+                }
+                // bigLogo.classList.remove('logo-transition');
+            }
+
+            if (document.body.scrollTop > navFixHeight || document.documentElement.scrollTop > navFixHeight) {
+                miniLogo.classList.add('logo-animate');
+            } else {
+                miniLogo.classList.remove('logo-animate');
+            }
+
+
+            // console.log(scrollTop);
+            if (scrollTop > window_height * 2 - 50) {
+
+                document.querySelector(".nav-pic").classList.add("up");
+                TweenMax.staggerTo(".box2", 2, {
+                    width: 0,
+                    ease: Power2.easeOut,
+                    borderRadius: 0,
+                    // rotation:360,
+                }, .5)
+            } else {
+                document.querySelector(".nav-pic").classList.remove("up");
+            }
+
+            if (scrollTop > window_height * 3 - 50) {
+                TweenMax.staggerTo(".box3", 2, {
+                    width: 0,
+                    ease: Power2.easeOut,
+                    borderRadius: 0,
+                    // rotation:360,
+                }, .5)
+            }
+
+if (scrollTop = 2847) {
+    TweenMax.from(".icon", 3, {
+            x:-1000,
+            opacity: 0,
+            ease: Bounce.easeOut,
+            rotation: -1800,
+            scale: 1,
+        }, 0.5);
+        TweenMax.staggerFrom(".tea", 1, {
+            y:-100,
+            borderRadius:999,
+            opacity: 0,
+            ease: Expo.easeOut,
+            // rotation: 3600,
+            scale: 0.1,
+            delay:3,
+        }, 0.5);
+ TweenMax.staggerTo(".dance", 1, {
+            right: 20,
+            y:200,
+            x:1000,
+            borderRadius:999,
+            opacity: 1,
+            ease: Elastic.easeOut,
+            rotation: 3600,
+            scale: 1,
+        }, 0.5);
+        var tm = new TimelineMax()
+        tm.staggerTo(".dance", 2, {
+            y:375,
+            x:20,
+            // opacity: 1,
+            ease: Bounce.easeOut,
+            rotation: 1800,
+            scale: 1,
+            delay:5,
+            // opacity:0,
+        },.5)
+
+}
+
+            myFunction();
+            picTest();
+        };
+
+        function myFunction() {
+            if (document.body.scrollTop > navFixHeight || document.documentElement.scrollTop > navFixHeight) {
+                // console.log("GGGG87");
+                /*當卷軸滾動超過定點時，執行以下程式*/
+                document.querySelector('.navbar').classList.add('fixed');
+                document.querySelector('#mobile-navbar').classList.add('fixed-menu');
+                document.querySelector('.bg_parallax1').classList.add('active');
+                TweenMax.staggerTo(".box", 2, {
+                    width: 0,
+                    ease: Power2.easeOut,
+                    borderRadius: 0,
+                    // rotation:360,
+                }, .5)
+                // .To(".menu", 2, {
+                //     opacity: 1,
+                //     x: 1700,
+                //     // ease: Power2.easeOut,
+                //     // borderRadius: 0,
+                //     rotation: 360,
+                // }, .5)
+
+            } else {
+                // console.log("87");
+                document.querySelector('.navbar').classList.remove('fixed');
+                document.querySelector('#mobile-navbar').classList.remove('fixed-menu');
+                document.querySelector('.bg_parallax1').classList.remove('active');
+            }
+        }
+        function picTest() {
+            if (document.body.scrollTop > window_height * 2 - 280 || document.documentElement.scrollTop > window_height * 2 - 280) {
+                // console.log(window_height*2 - 160)
+            }
+        }
+
+    </script>
+    <!-- ************************ -->
+    <!-- *   TweenMax             -->
+    <!-- ************************ -->
+    <script>
+// TweenMax.staggerTo(".menu",2,{
+//     x:1700,
+//     ease:Power4.easeIn,
+//     borderRadius:99,
+//     // rotation:360,
+// },1)
+    </script>
+</body>
+
+</html>
