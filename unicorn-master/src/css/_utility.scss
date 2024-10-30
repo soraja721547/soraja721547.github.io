@@ -1,0 +1,34 @@
+@mixin fontB() {
+  font-weight: bold;
+}
+
+@mixin fontM() {
+  font-weight: medium;
+}
+
+@mixin IMG($photo) {
+  background-image: url($photo);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+@mixin vCenter() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin multiLineEllipsis($lineHeight: 1.4, $lineCount: 8, $fontSize: 14px) {
+  display: block;
+  display: -webkit-box;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  text-align: justify;
+  max-height: $lineHeight * $lineCount * $fontSize;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lineCount;
+  -webkit-box-orient: vertical;
+}
